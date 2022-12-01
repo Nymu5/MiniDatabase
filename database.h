@@ -8,13 +8,22 @@
 #ifndef MINIDATABASE_DATABASE_H
 #define MINIDATABASE_DATABASE_H
 
-struct M_Item;
-typedef struct M_Item Item;
-void error(char*, int);
-int add(void);
-Item* last(void);
-Item* first(void);
-Item* get(int);
+typedef struct M_Item {
+    struct M_Item *prev;
+    struct M_Item *next;
+    char c;
+} Item;
+
+void error(char *, int);
+
+int add(char);
+
+struct M_Item *last(void);
+
+struct M_Item *first(void);
+
+struct M_Item *get(int);
+
 int rem(int);
 
 #endif /* MINIDATABASE_DATABASE_H */

@@ -4,17 +4,12 @@
  * Version 1.0
  * Modified 2022-12-01
  */
-
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "database.h"
 
 int length = 0;
-struct M_Item {
-    struct M_Item *prev;
-    struct M_Item *next;
-};
 
 Item *dll_start = NULL;
 Item *dll_end = NULL;
@@ -25,7 +20,7 @@ void error(char* message, int code) {
     return;
 }
 
-int add(void) {
+int add(char c) {
     if (!(dll_current = (Item *) malloc(sizeof(Item)))) { /* checks if dll_current is empty */
         error("creation failed", -2);
         return -2;
@@ -33,6 +28,7 @@ int add(void) {
 
     dll_current->next = NULL; /* define new element - no next since adding adding at the end */
     dll_current->prev = dll_end; /* define new element - old last is new previous */
+    dll_current->c = c;
 
     if (dll_start == NULL) { /* if database is empty */
         dll_start = dll_current; /* new item is first item of database */
